@@ -113,12 +113,8 @@
     [_pieView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_pieView];
     
-    UIImage *ci     = [MITheme imageNamed:[MITheme objectWithName:@"pie_chart_center_image"]];
-    float pieSize   = [MITheme floatWithName:@"pie_chart_size"];
-    
-    _centerSugestedSize = (pieSize < 1) ? ci.size : CGSizeMake(pieSize, pieSize);;
-     
-    
+    CGFloat centerW = (CGRectGetWidth(self.bounds) / 2.0) - 2.0 * _pieCenterPadding;
+    _centerSugestedSize = CGSizeMake(centerW, centerW);
     
     _startPieAngle = -M_PI_2;
     _selectedSliceStroke = 3.0;
@@ -137,7 +133,6 @@
     
     _centerBackgroundLayer = [CALayer layer];
     _centerBackgroundLayer.contentsGravity = (scale > 2) ? kCAGravityResizeAspectFill : kCAGravityCenter;
-    _centerBackgroundLayer.contents = (id)ci.CGImage;
     
     _centerContentLayer = [CALayer layer];
     _centerContentLayer.contentsGravity = kCAGravityCenter;
